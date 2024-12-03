@@ -11,17 +11,19 @@ html {
 }
 
 body {
-  height: 100vh;
   background-color: #ddd;
 }
 
 .header {
   display: flex;
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 0.8rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+.hidden {
+  display: none;
 }
 
 h2 {
@@ -152,20 +154,25 @@ h3 {
 
 .chat_list {
   max-width: 1000px;
-  max-height: 100vh;
+  max-height: 640px;
   padding: 2rem 1rem 12rem;
   margin: 0 auto;
   overflow-y: auto;
 }
-
+.chat_list::-webkit-scrollbar {
+  display: none;
+}
 .chat_list .message {
   margin-bottom: 4rem;
 }
 .chat_list .message .message_content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
   width: 100%;
+}
+.chat_list .message .message_content .text {
+  align-self: center;
 }
 
 .chat_list .message .avatar {
@@ -212,16 +219,24 @@ h3 {
   background-color: #aaa;
 }
 .chat_list .loading_indicator {
-  display: flex;
+  display: none;
   width: 100%;
   flex-direction: column;
   gap: 0.8rem;
 }
+.chat_list .message.loading .loading_indicator {
+  display: flex;
+}
+
 .chat_list .loading_indicator .loading_bar {
   height: 11px;
   width: 100%;
   background: linear-gradient(to right, #46396f, #ddd, #46396f);
   animation: animate 3s linear infinite;
+}
+
+.chat_list .loading_indicator :last-child {
+  width: 80%;
 }
 
 @keyframes animate {
