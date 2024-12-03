@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  background-color: #ddd;
+}
+
+.header {
+  display: flex;
+  display: none;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 4rem;
+  background: linear-gradient(to bottom, #b84a62, #46396a); /* Gradient */
+  -webkit-background-clip: text; /* Chrome, Safari, Edge */
+  background-clip: text; /* Firefox */
+  color: transparent; /* Text must be transparent */
+}
+
+h3 {
+  font-size: 2.5rem;
+}
+
+.suggest_list {
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  gap: 4rem;
+  margin-top: 10rem;
+  overflow-x: auto;
+}
+
+.suggested_el {
+  background: linear-gradient(to bottom, #b84a62, #46396a);
+  -webkit-background-clip: text;
+  background-clip: border-box;
+  background-color: transparent;
+
+  width: 22rem;
+  height: 18rem;
+  border-radius: 9px;
+  flex: 1;
+  padding: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+  width: 227px;
+  cursor: pointer;
+}
+
+.suggested_el:hover {
+  opacity: 0.9;
+}
+
+.suggested_el h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.suggested_el .icon {
+  font-size: 3rem;
+  padding: 5px;
+  border-radius: 100%;
+}
+
+.typing_container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 1000px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.typing_container :where(.typing_form, .action_buttons) {
+  display: flex;
+  gap: 0.8rem;
+}
+.typing_container .input_container {
+  position: relative;
+  display: flex;
+  height: 56px;
+  width: 100%;
+}
+.typing_container .input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 100rem;
+  border: solid 2px #46396a;
+  outline: none;
+  font-size: 1.8rem;
+  padding: 0 2.4rem;
+  background-color: #ddd;
+}
+.typing_container .input::placeholder {
+  color: #46396a;
+}
+.typing_container .input:focus {
+  opacity: 0.7;
+}
+
+.typing_container .input:focus {
+  outline: none;
+}
+
+.typing_container .icon {
+  height: 56px;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.typing_container .icon:hover {
+  color: #b84a62;
+}
+.typing_container .input_container .icon {
+  position: absolute;
+  right: 0;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.typing_container .claimer_text {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.chat_list {
+  max-width: 1000px;
+  max-height: 100vh;
+  padding: 2rem 1rem 12rem;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.chat_list .message {
+  margin-bottom: 4rem;
+}
+.chat_list .message .message_content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.chat_list .message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat_list .message .text {
+  font-size: 1.7rem;
+}
+
+.chat_list .message.loading .text {
+  display: none;
+}
+
+.chat_list .message.loading .avatar {
+  animation: rotate 3s linear infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.chat_list .message .icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5rem;
+  cursor: pointer;
+  visibility: hidden;
+}
+.chat_list .message:not(.loading):hover .icon {
+  visibility: visible;
+}
+
+.chat_list .message .icon:active {
+  background-color: #aaa;
+}
+.chat_list .loading_indicator {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.chat_list .loading_indicator .loading_bar {
+  height: 11px;
+  width: 100%;
+  background: linear-gradient(to right, #46396f, #ddd, #46396f);
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: -800px 0;
+  }
+  100% {
+    background-position: 800px 0;
+  }
+}
