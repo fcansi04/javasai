@@ -73,7 +73,7 @@ const handleOutgoingChat = function () {
   userMessage = userInput.value.trim();
   if (!userMessage) return;
   const html = `<div class="message_content">
-          <img src="IMG-20241130-WA0021.jpg" alt="user image" class="avatar" />
+          <img src="user-2935527_1280.png" alt="user image" class="avatar" />
           <p class="text">
             ${userMessage}
           </p>
