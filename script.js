@@ -18,6 +18,26 @@ const createMessageElement = function (content, className) {
   return div;
 };
 
+const deleter = () => {
+  if (confirm("are you sure to want to delete all messages")) {
+    chatList.innerHTML = "";
+    header.classList.remove("hidden");
+  }
+};
+
+const suggestedEls = document.querySelectorAll(".suggested_el");
+
+suggestedEls.forEach((el) => {
+  const suggestedTextEl = el.querySelector("h4");
+  el.addEventListener("click", () => {
+    const suggestedText = suggestedTextEl.innerText;
+    userInput.value = suggestedText;
+    header.classList.add("hidden");
+
+    handleOutgoingChat();
+  });
+});
+
 const generateAPIResponse = async (animationDiv) => {
   const textElement = animationDiv.querySelector(".text");
 
@@ -61,12 +81,18 @@ const showLoadingAnimation = () => {
             <div class="loading_bar"></div>
           </div>
         </div>
-        <span class="icon material-symbols-rounded">content_copy</span>`;
+        <span onClick="copyMessage(this)" class="icon material-symbols-rounded">content_copy</span>`;
 
   animationDiv.innerHTML = animationHtml;
   chatList.appendChild(animationDiv);
 
   generateAPIResponse(animationDiv);
+};
+const copyMessage = (copyIcon) => {
+  const messageText = copyIcon.parentElement.querySelector(".text").innerText;
+  navigator.clipboard.writeText(messageText);
+  copyIcon.innerText = "done";
+  setTimeout(() => (copyIcon.innerText = "content_copy"), 1000);
 };
 
 const handleOutgoingChat = function () {
@@ -84,6 +110,8 @@ const handleOutgoingChat = function () {
   typingForm.reset();
 
   showLoadingAnimation();
+
+  chatList.scrollTo(0, chatList.scrollHeight);
 };
 
 typingForm.addEventListener("submit", (e) => {
